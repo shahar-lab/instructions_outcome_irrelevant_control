@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Game</title>
+    <!-- online run-->
+    <script src="lib/vendors/jspsych-7.1.2/jspsych.js"></script>
+    <script src="lib/vendors/jspsych-7.1.2/plugin-html-keyboard-response.js"></script>
+    <script src="lib/vendors/jspsych-7.1.2/plugin-html-button-response.js"></script>
+    <script src="lib/vendors/jspsych-7.1.2/plugin-preload.js"></script>
+    <script src="lib/vendors/jspsych-7.1.2/plugin-fullscreen.js"></script>
+    <script src="lib/vendors/jspsych-7.1.2/plugin-instructions.js"></script>
+    <script src="lib/vendors/jspsych-7.1.2/plugin-survey-likert.js"></script>
+    <script src="lib/vendors/jspsych-7.1.2/plugin-survey-text.js"></script>
+    <script src="lib/vendors/jspsych-7.1.2/plugin-survey-multi-choice.js"></script>
+    <link rel="stylesheet" href="lib/vendors/jspsych-7.1.2/jspsych.css">
+    <link href="./css/my_exp.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="lib/jspsych-7-pavlovia-2022.1.1.js"></script>
+
+    <!-- local run
+    <script src="jspsych/dist/jspsych.js"></script>
+    <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
+    <script src="jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="jspsych/dist/plugin-preload.js"></script>
+    <script src="jspsych/dist/plugin-instructions.js"></script>
+    <script src="jspsych/dist/plugin-survey-likert.js"></script>
+    <script src="jspsych/dist/plugin-survey-text.js"></script>
+    <script src="jspsych/dist/plugin-survey-multi-choice.js"></script>
+    <script src="jspsych/dist/plugin-fullscreen.js"></script>
+    <script src="jspsych/dist/plugin-html-slider-response.js"></script>
+    <script src="jspsych/dist/plugin-call-function.js"></script>
+    <link href="jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
+    <link href="css/my_exp.css" rel="stylesheet" type="text/css"/>-->
+
+
+</head>
+
+<body>
+
+    <script>
+
+    var jsPsych = initJsPsych({
+            on_finish: function () {
+                download_csv(jsPsych.data.get().csv());
+            }
+         });
+
+        /*this defines the css properties according to the window_screen_size*/
+        var root = document.documentElement;
+        var vis_angle_px = 105
+
+        root.style.setProperty('--left_card', window.screen.width / 2 - 2 * vis_angle_px + "px");
+        root.style.setProperty('--right_card', window.screen.width / 2 - 2 * vis_angle_px + "px");
+        root.style.setProperty('--top_card', window.screen.height / 2 - 90 + "px");
+        root.style.setProperty('--top_reward', window.screen.height / 2 + "px");
+        root.style.setProperty('--left_reward', window.screen.width / 2 + "px");
+
+        /*---------------------------------------------------- 
+        Define experiment conditions
+        ------------------------------------------------------*/
+        
+        var manipulation_block_1= [true, false, false, false, true, false, true, false, true, false, false, false, false, true, false, true, false, true,
+         false, true, false, false, false, false, false, false, true, false, true, false, false, false, true, false, false, false, true, false, true,
+          false, false, true, false, false, true, false, false, false,  false, true]
+
+        var manipulation_block_2= [false, true, false, false, false, true, false, false, true, false, false, false, true, false, false, true, false, true, 
+        false, true, false, false, false, true, false, false, true, false, false, true, false, false, false, false, false, true, false, false, true, 
+        false, true, false, true, false, false, true, false, true, false, false]
+
+        var manipulation_block_3= [false, false, true,false, false, false, false, false, false, true, false, true, false, true, false, true, false, false, 
+        true, false, true, false, false, false, false, false, true, false, false, false, true, false, true, false, false, false, true, false, true, 
+        false, false, true, false, true, false, false, true, false, false, true]
+
+        var manipulation_block_4= [false, true, false, false, false, true, false, false, true, false, true, false, true, false, false, true, false, false, 
+        false, true, false, false, false, false, true, false, true, false, false, false, true, false, true, false, false, true, false, false, true, 
+        false, false, false, true, false, true, false, false, false, false, true]
+
+        var manipulation_block_5= [false, false, true, false, true, false, true, false, true, false, false, true, false, false, true, false, false, false, 
+        true, false, true, false, false, true, false, false, false, true, false, false, true, false, false, false, false, false, true, false, false, 
+        false, false, true, false, true, false, false, true, false, true, false]
+
+        var manipulation_block_6= [false, false, true, false, false, false, true, false, true, false, true, false, false, true, false, false, false, true, 
+        false, true, false, false, true, false, true, false, false, false, false, true, false, false, true, false, false, true, false, false, false, 
+        false, true, false, false, false, true, false, false, true, false, true]
+
+        var manipulation_block_7= [false, false, true, false, false, true, false, false, false, false, false, false, true, false, true, false, false, false, 
+        true, false, true, false, false, true, false, true, false, true, false, false, false, true, false, false, true, false, false, true, false, true, 
+        false, true, false, true, false, false, false, true, false, false]
+
+        var manipulation_block_8= [true, false, false, false, false, true, false, true, false, true, false, true, false, false, true, false, true, false, 
+        true, false, false, false, false, false, false, true, false, true, false, false, true, false, false, false, true, false, true, false, true, 
+        false, false, false, false, false, true, false, true, false, false, false]
+
+        manipulation_1 = [manipulation_block_1, manipulation_block_3, manipulation_block_5, manipulation_block_7]
+        manipulation_2 = [manipulation_block_2, manipulation_block_4, manipulation_block_6, manipulation_block_8]
+
+        
+        var exp_blocks = jsPsych.randomization.sampleWithoutReplacement([manipulation_block_1, manipulation_block_2, manipulation_block_3, manipulation_block_4, manipulation_block_5, manipulation_block_6, manipulation_block_7, manipulation_block_8], 4)
+
+        /*---------------------------------------------------- 
+        Define images
+        ------------------------------------------------------*/
+
+        var practice_deck_images = ['images/practice_cards/p1.jpg', 'images/practice_cards/p2.jpg', 'images/practice_cards/p3.jpg', 'images/practice_cards/p4.jpg']
+        var test_deck_images = ['images/test_cards/f1.jpg', 'images/test_cards/f2.jpg', 'images/test_cards/f3.jpg', 'images/test_cards/f4.jpg', 'images/test_cards/f5.jpg', 'images/test_cards/f6.jpg', 'images/test_cards/f7.jpg', 'images/test_cards/f8.jpg'
+            , 'images/test_cards/f9.jpg', 'images/test_cards/f10.jpg', 'images/test_cards/f11.jpg', 'images/test_cards/f12.jpg','images/test_cards/f13.jpg', 'images/test_cards/f14.jpg', 'images/test_cards/f15.jpg', 'images/test_cards/f16.jpg']
+        var reward_images = ['images/zero_coins.png', 'images/won1-no-back1.png']
+        var instructions_images = ['images/example_deck.jpg', 'images/example_new.jpg', 'images/reward_example_new.jpg','images/no_reward_example.png','images/group_shapes.png','images/group_shapes_surprise.png','images/keyboard.png']
+        var fixation = '<div class="fixation">+</div>'
+        var surprise= 'images/surprise.jpg'
+        var catch_trial_images = ['images/surprise box/1.jpg', 'images/surprise box/2.jpg', 'images/surprise box/3.jpg', 'images/surprise box/4.jpg', 'images/surprise box/5.jpg', 'images/surprise box/6.jpg', 'images/surprise box/7.jpg', 'images/surprise box/8.jpg', 'images/surprise box/9.jpg', 'images/surprise box/10.jpg', 
+        'images/surprise box/11.jpg', 'images/surprise box/12.jpg', 'images/surprise box/13.jpg', 'images/surprise box/14.jpg', 'images/surprise box/15.jpg', 'images/surprise box/16.jpg', 'images/surprise box/17.jpg', 'images/surprise box/18.jpg', 'images/surprise box/19.jpg', 'images/surprise box/20.jpg', 
+        'images/surprise box/21.jpg', 'images/surprise box/22.jpg', 'images/surprise box/23.jpg', 'images/surprise box/24.jpg', 'images/surprise box/25.jpg', 'images/surprise box/26.jpg', 'images/surprise box/27.jpg', 'images/surprise box/28.jpg', 'images/surprise box/29.jpg', 'images/surprise box/30.jpg',
+        'images/surprise box/new_1.jpg', 'images/surprise box/new_2.jpg', 'images/surprise box/new_3.jpg', 'images/surprise box/new_4.jpg', 'images/surprise box/new_5.jpg', 'images/surprise box/new_6.jpg', 'images/surprise box/new_7.jpg', 'images/surprise box/new_8.jpg', 'images/surprise box/new_9.jpg', 'images/surprise box/new_10.jpg', 
+        'images/surprise box/new_11.jpg', 'images/surprise box/new_12.jpg', 'images/surprise box/new_13.jpg', 'images/surprise box/new_14.jpg', 'images/surprise box/new_15.jpg', 'images/surprise box/new_16.jpg', 'images/surprise box/new_17.jpg', 'images/surprise box/new_18.jpg', 'images/surprise box/new_19.jpg', 'images/surprise box/new_20.jpg', 
+        'images/surprise box/new_21.jpg', 'images/surprise box/new_22.jpg', 'images/surprise box/new_23.jpg', 'images/surprise box/new_24.jpg', 'images/surprise box/new_25.jpg', 'images/surprise box/new_26.jpg', 'images/surprise box/new_27.jpg', 'images/surprise box/new_28.jpg', 'images/surprise box/new_29.jpg', 'images/surprise box/new_30.jpg', 
+        'images/surprise box/new_31.jpg', 'images/surprise box/new_32.jpg', 'images/surprise box/new_33.jpg', 'images/surprise box/new_34.jpg', 'images/surprise box/new_35.jpg', 'images/surprise box/new_36.jpg', 'images/surprise box/new_37.jpg', 'images/surprise box/new_38.jpg', 'images/surprise box/new_39.jpg', 'images/surprise box/new_40.jpg', 
+        'images/surprise box/new_41.jpg', 'images/surprise box/new_42.jpg', 'images/surprise box/new_43.jpg', 'images/surprise box/new_44.jpg', 'images/surprise box/new_45.jpg', 'images/surprise box/new_46.jpg', 'images/surprise box/new_47.jpg', 'images/surprise box/new_48.jpg', 'images/surprise box/new_49.jpg', 'images/surprise box/new_50.jpg', 
+        'images/surprise box/new_51.jpg', 'images/surprise box/new_52.jpg', 'images/surprise box/new_53.jpg', 'images/surprise box/new_54.jpg', 'images/surprise box/new_55.jpg', 'images/surprise box/new_56.jpg', 'images/surprise box/new_57.jpg', 'images/surprise box/new_58.jpg', 'images/surprise box/new_59.jpg', 'images/surprise box/new_60.jpg', 
+        'images/surprise box/new_61.jpg', 'images/surprise box/new_62.jpg', 'images/surprise box/new_63.jpg', 'images/surprise box/new_64.jpg', 'images/surprise box/new_65.jpg', 'images/surprise box/new_66.jpg', 'images/surprise box/new_67.jpg', 'images/surprise box/new_68.jpg', 'images/surprise box/new_69.jpg', 'images/surprise box/new_70.jpg' , 
+        'images/surprise box/new_71.jpg' , 'images/surprise box/new_72.jpg' , 'images/surprise box/new_73.jpg' , 'images/surprise box/new_74.jpg' , 'images/surprise box/new_75.jpg' , 'images/surprise box/new_76.jpg' , 'images/surprise box/new_77.jpg' , 'images/surprise box/new_78.jpg' , 'images/surprise box/new_79.jpg' , 'images/surprise box/new_80.jpg' , 
+        'images/surprise box/new_81.jpg' , 'images/surprise box/new_82.jpg' , 'images/surprise box/new_83.jpg' , 'images/surprise box/new_84.jpg' , 'images/surprise box/new_85.jpg' , 'images/surprise box/new_86.jpg' , 'images/surprise box/new_87.jpg' , 'images/surprise box/new_88.jpg' , 'images/surprise box/new_89.jpg' , 'images/surprise box/new_90.jpg' , 
+        'images/surprise box/new_91.jpg' , 'images/surprise box/new_92.jpg' , 'images/surprise box/new_93.jpg' , 'images/surprise box/new_94.jpg' , 'images/surprise box/new_95.jpg' , 'images/surprise box/new_96.jpg' , 'images/surprise box/new_97.jpg' , 'images/surprise box/new_98.jpg' , 'images/surprise box/new_99.jpg' , 'images/surprise box/new_100.jpg' , 
+        'images/surprise box/new_101.jpg' , 'images/surprise box/new_102.jpg' , 'images/surprise box/new_103.jpg' , 'images/surprise box/new_104.jpg' , 'images/surprise box/new_105.jpg' , 'images/surprise box/new_106.jpg' , 'images/surprise box/new_107.jpg' , 'images/surprise box/new_108.jpg' , 'images/surprise box/new_109.jpg' , 'images/surprise box/new_110.jpg' , 
+        'images/surprise box/new_111.jpg' , 'images/surprise box/new_112.jpg' , 'images/surprise box/new_113.jpg' , 'images/surprise box/new_114.jpg' , 'images/surprise box/new_115.jpg' , 'images/surprise box/new_116.jpg' , 'images/surprise box/new_117.jpg' , 'images/surprise box/new_118.jpg' , 'images/surprise box/new_119.jpg' , 'images/surprise box/new_120.jpg' , 
+        'images/surprise box/new_121.jpg' , 'images/surprise box/new_122.jpg' , 'images/surprise box/new_123.jpg' , 'images/surprise box/new_124.jpg' , 'images/surprise box/new_125.jpg' , 'images/surprise box/new_126.jpg' , 'images/surprise box/new_127.jpg' , 'images/surprise box/new_128.jpg' , 'images/surprise box/new_129.jpg' , 'images/surprise box/new_130.jpg' , 
+        'images/surprise box/new_131.jpg']
+        var is_confirm_trial;
+        catch_trial_images = jsPsych.randomization.repeat(catch_trial_images, 1) //shuffles the order
+        var preload = {
+            type: jsPsychPreload,
+            images: practice_deck_images, test_deck_images, reward_images, instructions_images, catch_trial_images,surprise
+        };
+
+        /*---------------------------------------------------- 
+        Start instructions
+        ------------------------------------------------------*/
+
+        /*full screen */
+        var enter_fullscreen = {
+            type: jsPsychFullscreen,
+            message: '<p>This experiment will be in fullscreen mode. <br> <b>Please make sure your browser is on 100% zoom, and your keyboard is on the English language.</b></p>',
+            fullscreen_mode: true,
+            button_label: "Press here to confirm and get into fullscreen mode"
+
+        }
+
+        var instructions_cards = {
+            on_start: function () {
+                if (document.querySelector('#cursor-toggle') != null) {
+                    document.querySelector('#cursor-toggle').remove()
+                }
+            },
+            type: jsPsychInstructions,
+            pages: ["<p><b><u>Welcome to the card game</u></b></p>"
+                //+ "<p style='text-align:left'>Your winnings in this game will earn you additional payment bonus for participating in the study."
+                //+ " If you do not earn any extra money in the card game, you will still receive <b>&pound5 per hour</b> for completing this session of the study."
+               // + " <br>However, you can gain up to an <b>extra &pound4 based on winnings in the game.</b></p>"
+               ,
+            "<p style='text-align:left'> We will now provide instructions regarding the card game. <b>Please read them carefully.</b> <br>"
+            + "Feel free to go back and forth between the screens.<br><br>",
+            "Once you finished reading the instructions, <b>we will ask you to take a quick quiz</b> to make sure you understood everything correctly.</p>",
+
+            "<p style='text-align:left'> Here is an example of a four-card deck, similar to the cards you will encounter in the upcoming game. </p>" +
+            "<img class='group' src= " + instructions_images[0] + ">",
+
+            "<p style='text-align:left'>During each step, you will be presented with a choice between two cards from the four-card deck."
+                +" To select the <b>left card</b>, press 's' on your keyboard, and to select the <b>right card</b>, press 'k'.</p><br>"
+            + "<img class='example' src= " + instructions_images[1] + ">",
+
+            "<p style='text-align:left'>Once you made your card selection, you will  <b>see the card you selected alongside an outcome</b> displayed in the center of the screen. <br>The outcome can either be <b>winning a golden coin</b>, as illustrated below, or...</p>"
+            +"<br> <img class='example' src= " + instructions_images[2] + ">",
+            "<p style='text-align:left'>Or it could be <b>not winning a coin, like here</b></p>"
+            + "<br> <img class='example' src= " + instructions_images[3] + ">",
+            "<b>Some cards give golden coins more often</b> than others.<br> Your task is to <b>learn this and choose accordingly.</b>",
+            
+            "<p style='text-align:left'><b> <b>Your chances of winning a coin depend on the card you choose, as some cards are better than others in their deck.</b><br><br>"
+            +"Please note that the winning chances of the cards are not related</b>.<br> Learning about one card does not tell you anything about the other cards. Finding out that one card gives you coins often, doesn't mean the other one will not.</p>"
+            ],
+            show_clickable_nav: true
+        };
+        var instructions_shapes =  {
+            on_start: function () {
+                if (document.querySelector('#cursor-toggle') != null) {
+                    document.querySelector('#cursor-toggle').remove()
+                }
+            },
+            type: jsPsychInstructions,
+            pages: ["<p style='text-align:left'> In addition to the cards, you will also see unique shapes. <br> You are asked to <b>choose between the two offered shapes.</b></p>"+
+                 "<br> <img class='shape' src=" + instructions_images[4] + ">",
+                "<p style='text-align:left'> Once you selected a shape out of two possible options, you will not see whether you won a coin or not."
+                +"<b><br>This will remain hidden from you </b>in the shape choices.<br></p>"
+                + "<br> <img class='shape' src=" + instructions_images[5] + ">"
+                ,"<p style='text-align:left'><br><b>At the end of each game part, you will find out how much you earned from all the shape choices in that game part</b>. <br>Note that you will only see each shape once during the game.</p>"
+                 + "<br> <img class='shape' src=" + instructions_images[5] + ">",
+                "<p style='text-align:left'><u>Three important things to remember:</u><br>"
+                + "1. <b>How good a card is can slowly change along with the game</b> - somewhat like how market products are sometimes worth more and sometimes less."
+                + "<br><br>2.<b> Only the cards are related to your chances of winning - </b> the location of the card and the response key you used to select it does not influence the chances of winning a coin.<br><br>"
+                + " 3. <b>The chance that each card will lead you to winning coins has nothing to do with the other cards - </b> you can't learn about one card from the rewards you got for the other.</p>"
+                + " <br><br><u>Please do your best to respond as fast and accurate as you can.</u><br><br>"]
+                ,show_clickable_nav: true
+            }
+                var start_instructions_test = {
+            on_start: function () {
+                if (document.querySelector('#cursor-toggle') != null)
+                    document.querySelector('#cursor-toggle').remove()
+            },
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: "<p> <br><br> You will now take a brief quiz to make sure that you understood the instructions. <b>If you make a mistake, you will need to review the instructions again.</b> Please scroll down until you answer all the questions. <br><br> <b> Press any key to continue</b></p>"
+        }
+
+        var numbers_options = ["2", "4", "6"];
+        var pressing_options = ["Click on it", "Press the LEFT or RIGHT arrow keys", "Press the `S` or `K` key with your LEFT or RIGHT hand"];
+        var true_false_options = ["True", "False"];
+        var cards_goal_options = ["The goal is to win as many coins as possible", "The goal is to pick similar cards"]
+        var card_keys_options = ["True - the response keys are related to coins winning chances", "False - you won't win more or less using RIGHT or LEFT response keys. Only the cards are related to your chances of winning coins"];
+
+        var instructions_test = {
+            type: jsPsychSurveyMultiChoice,
+            questions: [
+                { prompt: "What is the size of a card deck?", name: 'deck_size', correct: '4', options: numbers_options, required: true },
+                { prompt: "How many cards are presented on each step?", name: 'cards_step', correct: '2', options: numbers_options, required: true },
+                { prompt: "How do you choose a card?", name: 'choose_card', correct: 'Press the `S` or `K` key with your LEFT or RIGHT hand', options: pressing_options, required: true },
+                { prompt: "Some cards are better than others.", name: 'better_cards', correct: 'True', options: true_false_options, required: true },
+                { prompt: "How good a card is can change during the round", name: 'value_change', correct: 'True', options: true_false_options, required: true },
+                { prompt: "What is the goal of the game?", name: 'game_goal', correct: "The goal is to win as many coins as possible", options: cards_goal_options, required: true },
+                { prompt: "If one card leads you to more coins, it means the other cards will probably lead you to fewer coins", name: 'value_independence', correct: 'False', options: true_false_options, required: true },
+                { prompt: "Using the RIGHT response key instead of the LEFT key may increase your coin winning chances", name: 'location_value', correct: "False - you won't win more or less using RIGHT or LEFT response keys. Only the cards are related to your chances of winning coins", options: card_keys_options, required: true },
+            ]
+        };
+        
+
+        var if_trial = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: "<p>Sorry. You made a mistake.<br>"
+                + "Let`s go back to the instructions. "
+                + "Please read them carefully before submitting your answers. <br>"
+                + "Thank you!",
+            choices: ['Back to instructions']
+        }
+        var to_repeat;
+        var check_answers = {
+            timeline: [if_trial],
+            conditional_function: function () {
+                // get the data from the previous trial,
+                // and check which key was pressed
+                to_repeat = false;
+                var responses_to_test = jsPsych.data.getLastTrialData().trials[0].response
+                for (i = 0; i < instructions_test.questions.length; i++) {
+                    current_name = instructions_test.questions[i].name;
+                    current_correct = instructions_test.questions[i].correct
+                    if (current_correct != responses_to_test[current_name]) {
+                        to_repeat = true;
+                        return to_repeat
+                    }
+                    else {
+                        to_repeat = false;
+
+                    }
+                }
+                return to_repeat
+            }
+        }
+
+        /*---------------------------------------------------- 
+        Functions for card game
+        ------------------------------------------------------*/
+
+        function draw_show_cards(deck, catch_trial = false) {
+            if (catch_trial){
+                left_card = deck[catch_trial_used_cards];
+                catch_trial_used_cards++
+                right_card = deck[catch_trial_used_cards];
+                catch_trial_used_cards++
+            }
+            else if(is_confirm_trial){
+                drawn_cards = deck;
+                left_card = drawn_cards[0];
+                right_card = drawn_cards[1];
+            }
+            else {
+                drawn_cards = jsPsych.randomization.sampleWithoutReplacement(deck, 4)
+                left_card = drawn_cards[0];
+                right_card = drawn_cards[1];
+            }
+            left_with_tag = "<img class='card_left' src='" + left_card + "'>"
+            right_with_tag = "<img class='card_right' src='" + right_card + "'>"
+            return left_with_tag + right_with_tag + fixation;
+        }
+        
+        function show_choice() {
+
+            last_choice = jsPsych.data.getLastTrialData().values()[0].response
+            if (last_choice == 's') {
+                selected = 0
+                card_to_show = "<img class='card_left' src='" + left_card + "'>"
+            }
+            else if (last_choice == 'k') {
+                selected = 1
+                card_to_show = "<img class='card_right' src='" + right_card + "'>"
+            }
+            else if (last_choice == null) {
+                selected = null
+                reward = 0
+                return '<div style="font-size:40px;">Please respond faster!</div>'
+            }
+            else {
+                selected = -1
+                reward = 0
+                return '<div style="font-size:40px;">wrong key!</div><br><br><div style="font-size:20px;">Please use the `K` and `S` keys to select the left or right card respectively. </div>'
+            }
+            return card_to_show + fixation
+        }
+
+
+        function show_reward(current_trial_num,is_catch_trial) {
+            key_selected = jsPsych.data.getLastTrialData().values()[0].key_selected
+            if (key_selected == 0) {
+                card_to_show = "<img class='card_left' src='" + left_card + "'>"
+            }
+            else if (key_selected == 1) {
+                card_to_show = "<img class='card_right' src='" + right_card + "'>"
+            }
+            else if (key_selected == null) {
+                return '<div style="font-size:40px;">Please respond faster!</div>'
+            }
+            else {
+                return '<div style="font-size:40px;">wrong key!</div><br><br><div style="font-size:20px;">Please use the `K` and `S` keys to select the left or right card respectively. </div>'
+            }
+            if (is_catch_trial){
+                reward_to_show = "<img class=surprise src='" + surprise + "'>" 
+                prob_reward = 0.5;
+                prob_unreward = 0.5;
+                reward = jsPsych.randomization.sampleWithoutReplacement([0,1], 1)[0]; 
+                curr_block_catch_trials_reward += reward
+            }
+            else{
+            card_selected = jsPsych.data.getLastTrialData().values()[0].card_selected 
+            prob_reward = FB_matrix[card_selected][current_trial_num]; 
+            prob_unreward = 1 - prob_reward;
+            reward = jsPsych.randomization.sampleWithReplacement([0, 1], 1, [prob_unreward, prob_reward])[0];
+            curr_block_reward += reward;
+            reward_to_show = "<img class=reward src='" + reward_images[reward] + "'>" 
+            }
+
+            return card_to_show + reward_to_show
+        }
+        
+        function images_for_block_start() {
+            images = test_deck_images.slice(block * 4, block * 4 + 4)
+            return images
+        }
+
+
+        /*This function downloads the data */
+        var subN = localStorage.subN
+        var IDsub = Date.now();
+        function download_csv(csv) {
+            var hiddenElement = document.createElement('a');
+            file_name = "WM_visual_array_" + subN + "_" + IDsub.toString() + ".csv"
+            hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+            hiddenElement.target = '_blank';
+            hiddenElement.download = file_name;
+            hiddenElement.click();
+        }
+        /*---------------------------------------------------- 
+        Variabels for card game
+        ------------------------------------------------------*/
+        var FB_matrix_1 = [];
+        FB_matrix_1[0] = [0.157020842, 0.15, 0.15, 0.156040006, 0.15, 0.15, 0.15, 0.15, 0.15, 0.195488406, 0.238761738, 0.208685625, 0.176161325, 0.189415947, 0.179116023, 0.1990778, 0.15, 0.154505329, 0.20971304, 0.248624145, 0.243429274, 0.222942467, 0.25854102, 0.32771788, 0.346910101, 0.363247772, 0.412600622, 0.394723848, 0.379588708, 0.39092306, 0.37934023, 0.422537053, 0.42854826, 0.414645187, 0.411459023, 0.357681821, 0.319182052, 0.271389827, 0.331717046, 0.337330719, 0.360532922, 0.40079545, 0.4120548, 0.419174746, 0.49439884, 0.445138221, 0.462633019, 0.472754153, 0.446989894, 0.450821354];
+        FB_matrix_1[1] = [0.619709433, 0.638847416, 0.673558252, 0.650024264, 0.609580707, 0.643928684, 0.632410914, 0.660272086, 0.654805088, 0.654415047, 0.651459173, 0.622871469, 0.621873043, 0.64873017, 0.614258789, 0.624416768, 0.584623601, 0.549768795, 0.501743755, 0.463638119, 0.572912292, 0.521565163, 0.483212291, 0.416664343, 0.406414638, 0.424988911, 0.423891952, 0.477917326, 0.499917072, 0.527574737, 0.55610902, 0.542712218, 0.558499434, 0.630558855, 0.630067304, 0.633714377, 0.66237771, 0.642321058, 0.598826994, 0.537534203, 0.541353187, 0.565797459, 0.625624932, 0.673666597, 0.709709244, 0.732720996, 0.63950116, 0.653624258, 0.59332484, 0.584050675];
+        FB_matrix_1[2] = [0.455624574, 0.447060403, 0.464653849, 0.468050463, 0.479689254, 0.489298433, 0.49896292, 0.503229792, 0.426905337, 0.43950215, 0.424029653, 0.373946687, 0.309792793, 0.299386806, 0.330861332, 0.390680702, 0.368970152, 0.364360177, 0.30563429, 0.304244594, 0.231771321, 0.189074154, 0.232423255, 0.167898662, 0.223806442, 0.15, 0.160403157, 0.15, 0.15, 0.199845574, 0.252707012, 0.240813444, 0.31536487, 0.238292789, 0.158989637, 0.160086403, 0.157452045, 0.176706854, 0.163972711, 0.156086284, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.163664995, 0.191478745, 0.179692284, 0.15];
+        FB_matrix_1[3] = [0.57748884, 0.547476684, 0.564055839, 0.533591457, 0.548975462, 0.530164744, 0.449644452, 0.400668363, 0.363860908, 0.384457003, 0.381435283, 0.395809752, 0.418116153, 0.444540894, 0.461018357, 0.499538162, 0.501779212, 0.444644815, 0.41071651, 0.412544239, 0.404462135, 0.394042659, 0.427578923, 0.414173854, 0.432006777, 0.409534504, 0.383596933, 0.366896641, 0.455084108, 0.475709276, 0.523782927, 0.467327472, 0.456414917, 0.399816399, 0.404586093, 0.419517324, 0.426407739, 0.408329963, 0.442421569, 0.439231949, 0.422045599, 0.398831425, 0.445303813, 0.442015842, 0.391095483, 0.39784058, 0.324718947, 0.306483515, 0.337784885, 0.36036193];
+
+        var FB_matrix_2 = [];
+        FB_matrix_2[0] = [0.845975582, 0.85, 0.811239816, 0.789141099, 0.751663825, 0.727353519, 0.742347793, 0.753754227, 0.746075024, 0.737343506, 0.692984958, 0.675577628, 0.745556749, 0.711258377, 0.694514714, 0.714388446, 0.783630387, 0.770445764, 0.824521546, 0.790480453, 0.85, 0.85, 0.843176962, 0.85, 0.828195931, 0.755869601, 0.776593185, 0.816069896, 0.826657857, 0.85, 0.763451985, 0.768782827, 0.723154538, 0.744041295, 0.75598182, 0.763692087, 0.715492667, 0.665323379, 0.661767041, 0.636919337, 0.699988753, 0.705796474, 0.697944057, 0.668310167, 0.703052596, 0.670977142, 0.657559375, 0.657697261, 0.691640971, 0.611226726];
+        FB_matrix_2[1] = [0.375602714, 0.482825098, 0.494525989, 0.543622095, 0.516946927, 0.475244821, 0.4007603, 0.381880564, 0.347755216, 0.3778123, 0.38016307, 0.38413162, 0.267607153, 0.260422785, 0.26815508, 0.251406282, 0.209543175, 0.151202231, 0.22497851, 0.272585103, 0.250095598, 0.303130387, 0.376558624, 0.425015109, 0.466527045, 0.475585373, 0.495376391, 0.454527684, 0.458159321, 0.484668262, 0.495795589, 0.51734446, 0.52701977, 0.533999076, 0.503566092, 0.473970607, 0.496098949, 0.486695447, 0.450300737, 0.398544662, 0.352858472, 0.398636195, 0.426971078, 0.41298565, 0.416677577, 0.395748342, 0.327448231, 0.327799692, 0.251975712, 0.340218688];
+        FB_matrix_2[2] = [0.193985212, 0.206956046, 0.210698561, 0.167181867, 0.160385971, 0.222730036, 0.198469638, 0.172671624, 0.162798513, 0.15, 0.15, 0.15, 0.15, 0.199552386, 0.174287774, 0.269670687, 0.25278694, 0.189125238, 0.2254143, 0.243618922, 0.242317154, 0.2899124, 0.373745951, 0.359084648, 0.40365613, 0.441680486, 0.441644009, 0.414427809, 0.432450359, 0.422407689, 0.47876598, 0.439913213, 0.460515346, 0.477542614, 0.546639512, 0.571856383, 0.599289461, 0.632344043, 0.645294844, 0.603839822, 0.626033977, 0.617148809, 0.60514556, 0.605813283, 0.634693544, 0.608156883, 0.638272917, 0.759248046, 0.800744795, 0.743147931];
+        FB_matrix_2[3] = [0.657246048, 0.61808683, 0.595684151, 0.557190569, 0.5647405, 0.537794873, 0.572478029, 0.54428476, 0.565512041, 0.609162316, 0.612692636, 0.599074184, 0.624430541, 0.613624783, 0.589115859, 0.659608157, 0.609923227, 0.64601798, 0.678981124, 0.614548145, 0.56383454, 0.549029586, 0.558494015, 0.53432138, 0.524323956, 0.470320959, 0.472906551, 0.538562287, 0.47814494, 0.44618519, 0.381082716, 0.366965796, 0.358985001, 0.372394934, 0.344972096, 0.385304745, 0.353303089, 0.3547712, 0.302906028, 0.295663486, 0.352017105, 0.354826601, 0.31827643, 0.336191646, 0.321068887, 0.359266139, 0.341415476, 0.281568938, 0.282294115, 0.199795953];
+
+        var FB_matrix = jsPsych.randomization.sampleWithoutReplacement([1,2], 1)[0] == 1 ? FB_matrix_1 : FB_matrix_2;
+        var current_cards_practice_trial = 0;
+        var current_cards_exp_trial = 0;
+        var block = 0;
+        var blocks = 3;
+        var draw_cards;
+        var drawn_cards;
+        var left_card;
+        var right_card;
+        var selected;
+        var reward;
+        var is_catch_trial=false;
+        var catch_trial_used_cards = 0;
+        var curr_block_catch_trials_reward = 0;
+        var curr_block_reward = 0;
+
+        /*---------------------------------------------------- 
+        Start practice
+        ------------------------------------------------------*/
+        var timeline = [];
+        /*init connection with pavlovia.org*/
+        var pavlovia_init = {
+			type: jsPsychPavlovia,
+			command: "init"
+
+        };
+        timeline.push(pavlovia_init);
+        timeline.push(enter_fullscreen)
+        var start_practice_only_cards = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: '<div>We will now do a few practice trials. <br> Please be ready with your fingers on <b>"s"</b> and <b>"k".</b> <br><br> <b> Press any key to begin</b></div>'+"<img class='example' src=" + instructions_images[6] + ">",
+            post_trial_gap: 1000,
+            on_finish: function () { document.querySelector('head').insertAdjacentHTML('beforeend', '<style id="cursor-toggle"> html { cursor: none; } </style>') },
+        }
+        var fixation_cards = { 
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: fixation,
+            choices: "NO_KEYS",
+            trial_duration: 900
+        }
+
+        var practice_cards1 = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: function () {
+                    return draw_show_cards(practice_deck_images)
+                }
+            ,
+            choices: "ALL_KEYS",
+            trial_duration: 6000,
+            data: { phase: 'practice', trial_name: 'cards1', trial_num: function () { return current_cards_practice_trial } },
+
+        }
+        
+        var practice_choice1 = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: show_choice,
+            choices: "NO_KEYS",
+            trial_duration: 500,
+            data: { phase: 'practice', trial_name: 'choice1', trial_num: function () { return current_cards_practice_trial } },
+            on_finish: function (data) {
+                data.key_selected = selected
+                    if (selected == 0) {
+                        data.card_selected = practice_deck_images.indexOf(left_card)
+                    }
+                    else if (selected == 1) {
+                        data.card_selected = practice_deck_images.indexOf(right_card)
+                    }
+                }
+        }
+
+        var practice_reward1 = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: function () {
+                return show_reward(current_cards_practice_trial)
+            },
+            choices: "NO_KEYS",
+            trial_duration: 750,
+            data: { phase: 'practice', trial_name: 'reward1', trial_num: function () { return current_cards_practice_trial } }
+            , on_finish: function (data) {
+                data.reward = reward;
+            }
+        }
+
+        var practice_cards2 = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: function () {
+                left_card = drawn_cards[2];
+                right_card = drawn_cards[3];
+                left_with_tag = "<img class='card_left' src='" + left_card + "'>"
+                right_with_tag = "<img class='card_right' src='" + right_card + "'>"
+                return left_with_tag + right_with_tag + fixation;
+            },
+            choices: "ALL_KEYS",
+            trial_duration: 6000,
+            data: { phase: 'practice', trial_name: 'cards2', trial_num: function () { return current_cards_practice_trial } }
+        }
+        var practice_choice2 = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: show_choice,
+            choices: "NO_KEYS",
+            trial_duration: 500,
+            data: { phase: 'practice', trial_name: 'choice2', trial_num: function () { return current_cards_practice_trial } },
+            on_finish: function (data) {
+                data.key_selected = selected
+                    if (selected == 0) {
+                        data.card_selected = practice_deck_images.indexOf(left_card)
+                    }
+                    else if (selected == 1) {
+                        data.card_selected = practice_deck_images.indexOf(right_card)
+                    }
+                }
+        }
+
+        var practice_reward2 = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: function () {
+                return show_reward(current_cards_practice_trial,is_catch_trial)
+            },
+            choices: "NO_KEYS",
+            trial_duration: 750,
+            data: { phase: 'practice', trial_name: 'reward2', trial_num: function () { return current_cards_practice_trial } }
+            , on_finish: function (data) {
+                data.reward = reward;
+                current_cards_practice_trial += 1;
+                phase = jsPsych.data.getLastTrialData().values()[0].phase
+                current_cards_practice_trial += 1;
+                var correct = false;
+                if (data.correct_response == data.response) {
+                    correct = true;
+                }
+
+                else if (data.response == null) {
+                    correct = null;
+                }
+                data.is_correct = correct;
+            }
+        }
+
+        /*---------------------------------------------------- 
+        Start exp part of card game
+        ------------------------------------------------------*/
+
+        var start_exp_cards = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: function() {
+                    return '<div> Good job! Practice completed. <br> <br> We will now move on to the real game. Do your best to figure out which cards are better. Good luck!<br><br> <b>Press any key to continue.</b></div>'
+                },
+            post_trial_gap: 1000,
+            on_finish: function() {
+                curr_block_reward=0;
+            }
+        }
+
+        var start_block = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: function () {
+                    return '<p><b><u>Test block ' + (block + 1) + ' out of ' + (blocks + 1) + '</u></b></p>' + '<p style="text-align: left"> You will now start a test block. Below are the four cards that can appear in this round.</p>'
+                    + '<p style="text-align: left">Use the LEFT or RIGHT response keys (`s` or `k`, in correspondence) to make your selection. <br> Please do your best to win as many coins as possible!<br> </p>'
+                    + '<p style="text-align: left">Remember that: <br> 1) How `good` each card is can change along the round <br> 2) Only the cards (not the response key that was used to select them) predict an outcome <br> 3) The chance that each card will give you money has nothing to do with the other cards </p>'
+                    + '<p><b>Press SPACE to start</b></p>'
+                    + '<img class ="start" src="' + images_for_block_start()[0] + '">  ' + '<img class ="start" src="' + images_for_block_start()[1] + '">    ' + '<img class ="start" src="' + images_for_block_start()[2]
+                    + '">    ' + '<img class ="start" src="' + images_for_block_start()[3] + '">  '
+                
+            },
+            choices: [" "]
+            , post_trial_gap: 1000,
+            on_finish: function () { document.querySelector('head').insertAdjacentHTML('beforeend', '<style id="cursor-toggle"> html { cursor: none; } </style>') },
+        }
+
+        var exp_cards = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: function () {
+                
+                    if (exp_blocks[block][current_cards_exp_trial] == true){
+                        is_catch_trial=true;
+                        return draw_show_cards(catch_trial_images, true)
+                    }
+                    else{
+                        is_catch_trial=false;
+                    }
+                
+                return draw_show_cards(images_for_block_start())
+            },
+            choices: "ALL_KEYS",
+            trial_duration: 6000,
+            data: { phase: 'exp', trial_name: 'cards1', trial_num: function () { return current_cards_exp_trial }},
+
+        }
+
+        var exp_choice = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: show_choice,
+            choices: "NO_KEYS",
+            trial_duration: 500,
+            data: { phase: 'exp', trial_name: 'choice2', trial_num: function () { return current_cards_exp_trial } },
+            on_finish: function (data) {
+                data.key_selected = selected
+                if (selected == 0) {
+                    data.card_selected = images_for_block_start().indexOf(left_card)
+                }
+                else if (selected == 1) {
+                    data.card_selected = images_for_block_start().indexOf(right_card)
+                }
+            }
+        }
+        var exp_reward = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: function () {
+                return show_reward(current_cards_exp_trial,is_catch_trial)
+            },
+            choices: "NO_KEYS",
+            trial_duration: 750,
+            data: {
+                phase: 'exp', trial_name: 'reward2', trial_num: function () { return current_cards_exp_trial }, block: function () { return block },
+                prob1 : function(){return FB_matrix[0][current_cards_exp_trial]} ,
+                prob2 : function(){return FB_matrix[1][current_cards_exp_trial]},
+                prob3 : function(){return FB_matrix[2][current_cards_exp_trial]},
+                prob4 : function(){return FB_matrix[3][current_cards_exp_trial]}},
+                
+                on_finish: function(data){
+                data.is_catch_trial = is_catch_trial
+                data.left_card = images_for_block_start().indexOf(left_card);
+                data.right_card = images_for_block_start().indexOf(right_card);
+                data.key_selected = selected;
+                if (selected == 0) {
+                    data.card_selected = images_for_block_start().indexOf(left_card)
+                }
+                else if (selected == 1) {
+                    data.card_selected = images_for_block_start().indexOf(right_card)
+                }
+                data.reward = reward;
+                current_cards_exp_trial += 1;}
+        }
+
+
+
+        var finish_block = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: function () {
+                finish_block_string = '<p><u>Good job!</u></p>' + '<p style="text-align: left"><br> <b>Test block ' + (block + 1) + ' out of ' + (blocks) + ' is over.</b>'
+                finish_block_string += '<br> On the this part of the game <b>you earned ' + curr_block_reward + ' golden coins from cards choices and ' + curr_block_catch_trials_reward + ' golden coins from the magical shapes rounds.</b>'
+                
+                if (block != 3) {
+                    finish_block_string += '<br><br> You can stretch a little and take a short break while sitting in front of the screen, if needed.</p><p> <br><br><br><b>Press SPACE to continue</b>  </p>'
+                }
+                else {
+                    finish_block_string += ' That was the last part.</p><p> <br><br><br><b>Press SPACE to continue</b>  </p>'
+                }
+                return finish_block_string
+            },
+            post_trial_gap: 1000,
+            choices: [" "],
+            on_finish: function () {
+                block += 1;
+                current_cards_exp_trial = 0;
+                curr_block_catch_trials_reward = 0;
+                curr_block_reward = 0;
+            }
+        }
+
+        var finish_learning = {
+            on_start: function () {
+                while (document.querySelector('#cursor-toggle') != null)
+                    document.querySelector('#cursor-toggle').remove()
+            },
+            type: jsPsychHtmlButtonResponse,
+            stimulus: function () {
+                return "<b>Congratulations!</b> <br><br> You successfully finished the task. <br>"
+            },
+            choices:["Click here to complete the experiment"]
+            , button_html: ['<a href=https://tau-psychology.sona-systems.com/ target="_blank"> %choice%</a>']
+        }
+        
+        /*---------------------------------------------------- 
+        Define timelines
+        ------------------------------------------------------*/
+        var demo_procedure = {
+            timeline: [fixation_cards, practice_cards1, practice_choice1, practice_reward1],
+            repetitions: 2 //demo procedure takes 2*(900+6000+1000+750) = 17.3 sec
+        }
+
+        var instructions_loop = {
+            timeline: [instructions_cards, start_practice_only_cards, demo_procedure,instructions_shapes, start_instructions_test,instructions_test, check_answers],
+            loop_function: function () {
+                if (to_repeat == true) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } //manipulation: 7 min+ 1 sec + 17.3 sec + 2.5 min = 588.3 sec=
+        // regular: 4 min+ 1 sec + 17.3 sec + 2 min = 378.3 sec
+
+        var test_procedure_cards = {
+            timeline: [fixation_cards, exp_cards, exp_choice,exp_reward],
+            repetitions: 20 // every trial takes 900 + 6000 + 1000 + 750 = 8.65 sec pre trial, 50 trials = 432.5 sec 
+        }
+
+
+        var test_blocks = {
+            timeline: [start_block, test_procedure_cards, finish_block],
+            repetitions: 2
+        }; // every block takes 1000 + 432500 + 1000 = 434500= 434.5 sec, 4 blocks = 1738 sec
+        var full_procedure_cards = {
+            timeline: [preload, instructions_loop, start_exp_cards, test_blocks,finish_learning]
+        } // 378 + 1 + 1738 = 2117 sec= 35.28 min
+
+        
+        /*---------------------------------------------------- 
+        Run the main timeline
+        ------------------------------------------------------*/
+
+        timeline.push(full_procedure_cards)
+        /* finish connection with pavlovia.org */
+        var pavlovia_finish = {
+        type: jsPsychPavlovia,
+        command: "finish",
+        participantId: subject_id
+        };
+        timeline.push(pavlovia_finish);
+        jsPsych.run(timeline);
+
+
+    </script>
+
+</body>
+
+</html>
