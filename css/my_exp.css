@@ -12,7 +12,10 @@
         height: 215px;
         width: 517px;
     }
-
+    img.logo {
+        height: 107px;
+        width: 472px;
+    }
     img.fullscreen {
         height: 150px;
         width: 526px;

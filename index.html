@@ -69,7 +69,7 @@
         var reward_images = ['images/zero_coins.png', 'images/won1-no-back1.png']
         var instructions_images = ['images/example_deck.jpg', 'images/example_new.jpg', 'images/reward_example_new.jpg','images/no_reward_example.png','images/group_shapes.png','images/group_shapes_surprise.png','images/keyboard.png']
         var fixation = '<div class="fixation">+</div>'
-        
+        var logo = 'images/logo.png'
         var is_confirm_trial;
         var preload = {
             type: jsPsychPreload,
@@ -96,54 +96,35 @@
                 }
             },
             type: jsPsychInstructions,
-            pages: ["<p><b><u>Welcome to the card game</u></b></p>"
-                //+ "<p style='text-align:left'>Your winnings in this game will earn you additional payment bonus for participating in the study."
-                //+ " If you do not earn any extra money in the card game, you will still receive <b>&pound5 per hour</b> for completing this session of the study."
-               // + " <br>However, you can gain up to an <b>extra &pound4 based on winnings in the game.</b></p>"
+            pages: ["<p ><b><u>Welcome to the <i>Card Game</i></u></b></p>"
+                    + "<p> Your winnings in this game will earn you an additional payment bonus for participating in this study.</p> "
+                    + "<p>In any case you will still receive <b>&pound2 for completing this study.</b></p>"
+                    + " <p>However, you can earn up to an <b>extra &pound0.5 based on your winnings in the game.</b></p>"
                ,
-            "<p style='text-align:left'> We will now provide instructions regarding the card game. <b>Please read them carefully.</b> <br>"
-            + "Feel free to go back and forth between the screens.<br><br>",
-            "Once you finished reading the instructions, <b>we will ask you to take a quick quiz</b> to make sure you understood everything correctly.</p>",
+            "<p style='text-align:left'> We will now provide instructions for the game. <b>Please read them carefully.</b> <br>"
+                + "You can go back and forth between screens as needed.</p> ",
+            "<p style='text-align:left'> At the end of the instructions, <b>we will request that you complete a brief quiz</b>, to ensure everything is clearly understood.</p>",
 
-            "<p style='text-align:left'> Here is an example of a four-card deck, similar to the cards you will encounter in the upcoming game. </p>" +
+            "<p style='text-align:left'> Here is an example of a four-card deck as you will encounter in the game. </p>" +
             "<img class='group' src= " + instructions_images[0] + ">",
 
             "<p style='text-align:left'>During each step, you will be presented with a choice between two cards from the four-card deck."
                 +" To select the <b>left card</b>, press 's' on your keyboard, and to select the <b>right card</b>, press 'k'.</p><br>"
             + "<img class='example' src= " + instructions_images[1] + ">",
 
-            "<p style='text-align:left'>Once you made your card selection, you will  <b>see the card you selected alongside an outcome</b> displayed in the center of the screen. <br>The outcome can either be <b>winning a golden coin</b>, as illustrated below, or...</p>"
+            "<p style='text-align:left'>Once you made your card selection, you will  <b>see the card you selected alongside an outcome</b> displayed in the center of the screen. <br>The outcome can either be <b>winning a golden coin</b>, as illustrated below...</p>"
             +"<br> <img class='example' src= " + instructions_images[2] + ">",
-            "<p style='text-align:left'>Or it could be <b>not winning a coin, like here</b></p>"
+            "<p style='text-align:left'>Or it could be <b>not winning a coin, as presented here</b></p>"
             + "<br> <img class='example' src= " + instructions_images[3] + ">",
-            "<b>Some cards give golden coins more often</b> than others.<br> Your task is to <b>learn this and choose accordingly.</b>",
-            
-            "<p style='text-align:left'><b> <b>Your chances of winning a coin depend on the card you choose, as some cards are better than others in their deck.</b><br><br>"
-            +"Please note that the winning chances of the cards are not related</b>.<br> Learning about one card does not tell you anything about the other cards. Finding out that one card gives you coins often, doesn't mean the other one will not.</p>"
-            ],
+            "<p style='text-align:left'> You will play <b>4 rounds of 50 choices each</b>. Every round will include <b>4 new cards</b>. The golden coins you earn will be exchanged for a <b>bonus</b> at the end of the experiment.</p>",
+            "<p style='text-align:left'> <b>Winning a coin depends only on the card you choose</b>."
+                + "At any given time, some cards are worth more than others.</p>",
+                "<p style='text-align:left'>However, throughout the game <b>the demand for each card will slowly change</b>. Similar to how the demands of market products change.</p>",
+                "<p style='text-align:left'>Note that the <b>location of the cards (which one is on the left and which one is on the right) is completely random </b> and has nothing to do with their demand.</p>",
+            "Keep in mind that <b>each card has its own demand</b>, it could be that both offered cards have high demand or both have low demand. Learning about one card tells you nothing about the other cards.</p>",
+            "<p style='text-align:left'> Your task is to figure out <b>which cards have a higher demand at any given time</b> and select them.</p>"],
             show_clickable_nav: true
         };
-        var instructions_shapes =  {
-            on_start: function () {
-                if (document.querySelector('#cursor-toggle') != null) {
-                    document.querySelector('#cursor-toggle').remove()
-                }
-            },
-            type: jsPsychInstructions,
-            pages: ["<p style='text-align:left'> In addition to the cards, you will also see unique shapes. <br> You are asked to <b>choose between the two offered shapes.</b></p>"+
-                 "<br> <img class='shape' src=" + instructions_images[4] + ">",
-                "<p style='text-align:left'> Once you selected a shape out of two possible options, you will not see whether you won a coin or not."
-                +"<b><br>This will remain hidden from you </b>in the shape choices.<br></p>"
-                + "<br> <img class='shape' src=" + instructions_images[5] + ">"
-                ,"<p style='text-align:left'><br><b>At the end of each game part, you will find out how much you earned from all the shape choices in that game part</b>. <br>Note that you will only see each shape once during the game.</p>"
-                 + "<br> <img class='shape' src=" + instructions_images[5] + ">",
-                "<p style='text-align:left'><u>Three important things to remember:</u><br>"
-                + "1. <b>How good a card is can slowly change along with the game</b> - somewhat like how market products are sometimes worth more and sometimes less."
-                + "<br><br>2.<b> Only the cards are related to your chances of winning - </b> the location of the card and the response key you used to select it does not influence the chances of winning a coin.<br><br>"
-                + " 3. <b>The chance that each card will lead you to winning coins has nothing to do with the other cards - </b> you can't learn about one card from the rewards you got for the other.</p>"
-                + " <br><br><u>Please do your best to respond as fast and accurate as you can.</u><br><br>"]
-                ,show_clickable_nav: true
-            }
                 var start_instructions_test = {
             on_start: function () {
                 if (document.querySelector('#cursor-toggle') != null)
@@ -327,12 +308,40 @@
         ------------------------------------------------------*/
         var timeline = [];
         /*init connection with pavlovia.org*/
-        var pavlovia_init = {
-			type: jsPsychPavlovia,
-			command: "init"
+        // var pavlovia_init = {
+		// 	type: jsPsychPavlovia,
+		// 	command: "init"
 
-        };
-        timeline.push(pavlovia_init);
+        // };
+        // timeline.push(pavlovia_init);
+        var consent = {
+    type: jsPsychHtmlButtonResponse,
+    choices: ["I have read, understand, and agree to the above", "<a href='https://www.prolific.co/'>Press here to quit the experiment</a>"],
+    stimulus:" <p style='text-align: left;'><img class='logo' src='" + logo + "'><h2><b>Consent to participate in a research:</b></h2>"
+    +"<p style='text-align: left;'><strong>Greetings and thank you for your willingness to participate in this research.</strong> This study aims to examine learning mechanisms. Specifically, it seeks to improve and strengthen the diagnosis and treatment of mental disorders in the future. Hence, your participation is highly valued and contributes significantly.</p>"
++
+"<p style='text-align: left;'>For your participation, you will receive monetary compensation. Additionally, you could win a cash bonus based on your performance (details will be provided soon). Finally, at the end of the experiment, we would appreciate discussing the research questions further and sharing the results with you.</p>"
++
+"<p style='text-align: left;'><b>Participation Criteria:</b></p>"
++
+"<p style='text-align: left;'>The experiment is intended for young adults aged <strong>18 to 50</strong>. You cannot participate if you regularly use psychiatric or neurological medications, have a psychiatric/neurological diagnosis (including attention deficit hyperactivity disorder - ADHD), a history of head injuries, epilepsy, learning disabilities, or color blindness.</p>"
++
+"<p style='text-align: left;'><b>Procedure:</b></p>"
++
+"<p style='text-align: left;'>The study will be conducted online using your computer. During the experiment, we will track your learning patterns through a simple computer game. The game will display images on the screen, and you will make choices during the game to maximize profits according to rules explained during the experiment itself. The whole experiment is expected to take about 25 minutes. Upon completion of participation, compensation will be provided as agreed, and we will offer a full debriefing regarding the research goals and hypotheses.</p>"
++
+"<p style='text-align: left;'><b>Expected Risks and Termination of the Experiment:</b></p>"
++
+"<p style='text-align: left;'>The expected risks and discomforts in this study are minimal and include potential discomfort during the performance of the computer task. You have the right to withdraw from the experiment at any stage. In case of withdrawal, partial compensation will be provided based on the duration of your participation.</p>"
++
+"<p style='text-align: left;'><b>Compensation for Participation:</b></p>"
++
+"<p style='text-align: left;'>For completing the experiment, money payment will be given. In addition a cash bonus will be awarded based on performance in the task. Throughout the task, you can collect points (gold coins). At the end of the task, the number of points you have accumulated will be calculated. The amount of points depends on your ability to perform the experiment well, similar to scoring in a computer game. </p>"
++
+"<p style='text-align: left;'><b>Anonymity and Data Protection:</b></p>"
++
+"<p style='text-align: left;'>The information collected during the experiment will be kept solely on the lab computers and will be linked only to your PROLIFIC ID.</p>"}
+        timeline.push(consent)
         timeline.push(enter_fullscreen)
         var start_practice_only_cards = {
             type: jsPsychHtmlKeyboardResponse,
@@ -609,12 +618,12 @@
 
         timeline.push(full_procedure_cards)
         /* finish connection with pavlovia.org */
-        var pavlovia_finish = {
-        type: jsPsychPavlovia,
-        command: "finish",
-        participantId: subject_id
-        };
-        timeline.push(pavlovia_finish);
+        // var pavlovia_finish = {
+        // type: jsPsychPavlovia,
+        // command: "finish",
+        // participantId: subject_id
+        // };
+        // timeline.push(pavlovia_finish);
         jsPsych.run(timeline);
 
 
