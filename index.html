@@ -4,7 +4,7 @@
 <head>
     <title>Game</title>
     <!-- online run-->
-    <script src="lib/vendors/jspsych-7.1.2/jspsych.js"></script>
+    <!-- <script src="lib/vendors/jspsych-7.1.2/jspsych.js"></script>
     <script src="lib/vendors/jspsych-7.1.2/plugin-html-keyboard-response.js"></script>
     <script src="lib/vendors/jspsych-7.1.2/plugin-html-button-response.js"></script>
     <script src="lib/vendors/jspsych-7.1.2/plugin-preload.js"></script>
@@ -15,9 +15,9 @@
     <script src="lib/vendors/jspsych-7.1.2/plugin-survey-multi-choice.js"></script>
     <link rel="stylesheet" href="lib/vendors/jspsych-7.1.2/jspsych.css">
     <link href="./css/my_exp.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="lib/jspsych-7-pavlovia-2022.1.1.js"></script>
+    <script type="text/javascript" src="lib/jspsych-7-pavlovia-2022.1.1.js"></script> -->
 
-    <!-- local run
+    <!-- local run -->
     <script src="jspsych/dist/jspsych.js"></script>
     <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
     <script src="jspsych/dist/plugin-html-button-response.js"></script>
@@ -30,7 +30,7 @@
     <script src="jspsych/dist/plugin-html-slider-response.js"></script>
     <script src="jspsych/dist/plugin-call-function.js"></script>
     <link href="jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
-    <link href="css/my_exp.css" rel="stylesheet" type="text/css"/>-->
+    <link href="css/my_exp.css" rel="stylesheet" type="text/css"/>
 
 
 </head>
@@ -59,44 +59,6 @@
         Define experiment conditions
         ------------------------------------------------------*/
         
-        var manipulation_block_1= [true, false, false, false, true, false, true, false, true, false, false, false, false, true, false, true, false, true,
-         false, true, false, false, false, false, false, false, true, false, true, false, false, false, true, false, false, false, true, false, true,
-          false, false, true, false, false, true, false, false, false,  false, true]
-
-        var manipulation_block_2= [false, true, false, false, false, true, false, false, true, false, false, false, true, false, false, true, false, true, 
-        false, true, false, false, false, true, false, false, true, false, false, true, false, false, false, false, false, true, false, false, true, 
-        false, true, false, true, false, false, true, false, true, false, false]
-
-        var manipulation_block_3= [false, false, true,false, false, false, false, false, false, true, false, true, false, true, false, true, false, false, 
-        true, false, true, false, false, false, false, false, true, false, false, false, true, false, true, false, false, false, true, false, true, 
-        false, false, true, false, true, false, false, true, false, false, true]
-
-        var manipulation_block_4= [false, true, false, false, false, true, false, false, true, false, true, false, true, false, false, true, false, false, 
-        false, true, false, false, false, false, true, false, true, false, false, false, true, false, true, false, false, true, false, false, true, 
-        false, false, false, true, false, true, false, false, false, false, true]
-
-        var manipulation_block_5= [false, false, true, false, true, false, true, false, true, false, false, true, false, false, true, false, false, false, 
-        true, false, true, false, false, true, false, false, false, true, false, false, true, false, false, false, false, false, true, false, false, 
-        false, false, true, false, true, false, false, true, false, true, false]
-
-        var manipulation_block_6= [false, false, true, false, false, false, true, false, true, false, true, false, false, true, false, false, false, true, 
-        false, true, false, false, true, false, true, false, false, false, false, true, false, false, true, false, false, true, false, false, false, 
-        false, true, false, false, false, true, false, false, true, false, true]
-
-        var manipulation_block_7= [false, false, true, false, false, true, false, false, false, false, false, false, true, false, true, false, false, false, 
-        true, false, true, false, false, true, false, true, false, true, false, false, false, true, false, false, true, false, false, true, false, true, 
-        false, true, false, true, false, false, false, true, false, false]
-
-        var manipulation_block_8= [true, false, false, false, false, true, false, true, false, true, false, true, false, false, true, false, true, false, 
-        true, false, false, false, false, false, false, true, false, true, false, false, true, false, false, false, true, false, true, false, true, 
-        false, false, false, false, false, true, false, true, false, false, false]
-
-        manipulation_1 = [manipulation_block_1, manipulation_block_3, manipulation_block_5, manipulation_block_7]
-        manipulation_2 = [manipulation_block_2, manipulation_block_4, manipulation_block_6, manipulation_block_8]
-
-        
-        var exp_blocks = jsPsych.randomization.sampleWithoutReplacement([manipulation_block_1, manipulation_block_2, manipulation_block_3, manipulation_block_4, manipulation_block_5, manipulation_block_6, manipulation_block_7, manipulation_block_8], 4)
-
         /*---------------------------------------------------- 
         Define images
         ------------------------------------------------------*/
@@ -107,29 +69,11 @@
         var reward_images = ['images/zero_coins.png', 'images/won1-no-back1.png']
         var instructions_images = ['images/example_deck.jpg', 'images/example_new.jpg', 'images/reward_example_new.jpg','images/no_reward_example.png','images/group_shapes.png','images/group_shapes_surprise.png','images/keyboard.png']
         var fixation = '<div class="fixation">+</div>'
-        var surprise= 'images/surprise.jpg'
-        var catch_trial_images = ['images/surprise box/1.jpg', 'images/surprise box/2.jpg', 'images/surprise box/3.jpg', 'images/surprise box/4.jpg', 'images/surprise box/5.jpg', 'images/surprise box/6.jpg', 'images/surprise box/7.jpg', 'images/surprise box/8.jpg', 'images/surprise box/9.jpg', 'images/surprise box/10.jpg', 
-        'images/surprise box/11.jpg', 'images/surprise box/12.jpg', 'images/surprise box/13.jpg', 'images/surprise box/14.jpg', 'images/surprise box/15.jpg', 'images/surprise box/16.jpg', 'images/surprise box/17.jpg', 'images/surprise box/18.jpg', 'images/surprise box/19.jpg', 'images/surprise box/20.jpg', 
-        'images/surprise box/21.jpg', 'images/surprise box/22.jpg', 'images/surprise box/23.jpg', 'images/surprise box/24.jpg', 'images/surprise box/25.jpg', 'images/surprise box/26.jpg', 'images/surprise box/27.jpg', 'images/surprise box/28.jpg', 'images/surprise box/29.jpg', 'images/surprise box/30.jpg',
-        'images/surprise box/new_1.jpg', 'images/surprise box/new_2.jpg', 'images/surprise box/new_3.jpg', 'images/surprise box/new_4.jpg', 'images/surprise box/new_5.jpg', 'images/surprise box/new_6.jpg', 'images/surprise box/new_7.jpg', 'images/surprise box/new_8.jpg', 'images/surprise box/new_9.jpg', 'images/surprise box/new_10.jpg', 
-        'images/surprise box/new_11.jpg', 'images/surprise box/new_12.jpg', 'images/surprise box/new_13.jpg', 'images/surprise box/new_14.jpg', 'images/surprise box/new_15.jpg', 'images/surprise box/new_16.jpg', 'images/surprise box/new_17.jpg', 'images/surprise box/new_18.jpg', 'images/surprise box/new_19.jpg', 'images/surprise box/new_20.jpg', 
-        'images/surprise box/new_21.jpg', 'images/surprise box/new_22.jpg', 'images/surprise box/new_23.jpg', 'images/surprise box/new_24.jpg', 'images/surprise box/new_25.jpg', 'images/surprise box/new_26.jpg', 'images/surprise box/new_27.jpg', 'images/surprise box/new_28.jpg', 'images/surprise box/new_29.jpg', 'images/surprise box/new_30.jpg', 
-        'images/surprise box/new_31.jpg', 'images/surprise box/new_32.jpg', 'images/surprise box/new_33.jpg', 'images/surprise box/new_34.jpg', 'images/surprise box/new_35.jpg', 'images/surprise box/new_36.jpg', 'images/surprise box/new_37.jpg', 'images/surprise box/new_38.jpg', 'images/surprise box/new_39.jpg', 'images/surprise box/new_40.jpg', 
-        'images/surprise box/new_41.jpg', 'images/surprise box/new_42.jpg', 'images/surprise box/new_43.jpg', 'images/surprise box/new_44.jpg', 'images/surprise box/new_45.jpg', 'images/surprise box/new_46.jpg', 'images/surprise box/new_47.jpg', 'images/surprise box/new_48.jpg', 'images/surprise box/new_49.jpg', 'images/surprise box/new_50.jpg', 
-        'images/surprise box/new_51.jpg', 'images/surprise box/new_52.jpg', 'images/surprise box/new_53.jpg', 'images/surprise box/new_54.jpg', 'images/surprise box/new_55.jpg', 'images/surprise box/new_56.jpg', 'images/surprise box/new_57.jpg', 'images/surprise box/new_58.jpg', 'images/surprise box/new_59.jpg', 'images/surprise box/new_60.jpg', 
-        'images/surprise box/new_61.jpg', 'images/surprise box/new_62.jpg', 'images/surprise box/new_63.jpg', 'images/surprise box/new_64.jpg', 'images/surprise box/new_65.jpg', 'images/surprise box/new_66.jpg', 'images/surprise box/new_67.jpg', 'images/surprise box/new_68.jpg', 'images/surprise box/new_69.jpg', 'images/surprise box/new_70.jpg' , 
-        'images/surprise box/new_71.jpg' , 'images/surprise box/new_72.jpg' , 'images/surprise box/new_73.jpg' , 'images/surprise box/new_74.jpg' , 'images/surprise box/new_75.jpg' , 'images/surprise box/new_76.jpg' , 'images/surprise box/new_77.jpg' , 'images/surprise box/new_78.jpg' , 'images/surprise box/new_79.jpg' , 'images/surprise box/new_80.jpg' , 
-        'images/surprise box/new_81.jpg' , 'images/surprise box/new_82.jpg' , 'images/surprise box/new_83.jpg' , 'images/surprise box/new_84.jpg' , 'images/surprise box/new_85.jpg' , 'images/surprise box/new_86.jpg' , 'images/surprise box/new_87.jpg' , 'images/surprise box/new_88.jpg' , 'images/surprise box/new_89.jpg' , 'images/surprise box/new_90.jpg' , 
-        'images/surprise box/new_91.jpg' , 'images/surprise box/new_92.jpg' , 'images/surprise box/new_93.jpg' , 'images/surprise box/new_94.jpg' , 'images/surprise box/new_95.jpg' , 'images/surprise box/new_96.jpg' , 'images/surprise box/new_97.jpg' , 'images/surprise box/new_98.jpg' , 'images/surprise box/new_99.jpg' , 'images/surprise box/new_100.jpg' , 
-        'images/surprise box/new_101.jpg' , 'images/surprise box/new_102.jpg' , 'images/surprise box/new_103.jpg' , 'images/surprise box/new_104.jpg' , 'images/surprise box/new_105.jpg' , 'images/surprise box/new_106.jpg' , 'images/surprise box/new_107.jpg' , 'images/surprise box/new_108.jpg' , 'images/surprise box/new_109.jpg' , 'images/surprise box/new_110.jpg' , 
-        'images/surprise box/new_111.jpg' , 'images/surprise box/new_112.jpg' , 'images/surprise box/new_113.jpg' , 'images/surprise box/new_114.jpg' , 'images/surprise box/new_115.jpg' , 'images/surprise box/new_116.jpg' , 'images/surprise box/new_117.jpg' , 'images/surprise box/new_118.jpg' , 'images/surprise box/new_119.jpg' , 'images/surprise box/new_120.jpg' , 
-        'images/surprise box/new_121.jpg' , 'images/surprise box/new_122.jpg' , 'images/surprise box/new_123.jpg' , 'images/surprise box/new_124.jpg' , 'images/surprise box/new_125.jpg' , 'images/surprise box/new_126.jpg' , 'images/surprise box/new_127.jpg' , 'images/surprise box/new_128.jpg' , 'images/surprise box/new_129.jpg' , 'images/surprise box/new_130.jpg' , 
-        'images/surprise box/new_131.jpg']
+        
         var is_confirm_trial;
-        catch_trial_images = jsPsych.randomization.repeat(catch_trial_images, 1) //shuffles the order
         var preload = {
             type: jsPsychPreload,
-            images: practice_deck_images, test_deck_images, reward_images, instructions_images, catch_trial_images,surprise
+            images: practice_deck_images, test_deck_images, reward_images, instructions_images, 
         };
 
         /*---------------------------------------------------- 
@@ -266,14 +210,8 @@
         Functions for card game
         ------------------------------------------------------*/
 
-        function draw_show_cards(deck, catch_trial = false) {
-            if (catch_trial){
-                left_card = deck[catch_trial_used_cards];
-                catch_trial_used_cards++
-                right_card = deck[catch_trial_used_cards];
-                catch_trial_used_cards++
-            }
-            else if(is_confirm_trial){
+        function draw_show_cards(deck, ) {
+            if (is_confirm_trial) {
                 drawn_cards = deck;
                 left_card = drawn_cards[0];
                 right_card = drawn_cards[1];
@@ -313,7 +251,7 @@
         }
 
 
-        function show_reward(current_trial_num,is_catch_trial) {
+        function show_reward(current_trial_num) {
             key_selected = jsPsych.data.getLastTrialData().values()[0].key_selected
             if (key_selected == 0) {
                 card_to_show = "<img class='card_left' src='" + left_card + "'>"
@@ -327,21 +265,13 @@
             else {
                 return '<div style="font-size:40px;">wrong key!</div><br><br><div style="font-size:20px;">Please use the `K` and `S` keys to select the left or right card respectively. </div>'
             }
-            if (is_catch_trial){
-                reward_to_show = "<img class=surprise src='" + surprise + "'>" 
-                prob_reward = 0.5;
-                prob_unreward = 0.5;
-                reward = jsPsych.randomization.sampleWithoutReplacement([0,1], 1)[0]; 
-                curr_block_catch_trials_reward += reward
-            }
-            else{
+        
             card_selected = jsPsych.data.getLastTrialData().values()[0].card_selected 
             prob_reward = FB_matrix[card_selected][current_trial_num]; 
             prob_unreward = 1 - prob_reward;
             reward = jsPsych.randomization.sampleWithReplacement([0, 1], 1, [prob_unreward, prob_reward])[0];
             curr_block_reward += reward;
             reward_to_show = "<img class=reward src='" + reward_images[reward] + "'>" 
-            }
 
             return card_to_show + reward_to_show
         }
@@ -389,9 +319,7 @@
         var right_card;
         var selected;
         var reward;
-        var is_catch_trial=false;
         var catch_trial_used_cards = 0;
-        var curr_block_catch_trials_reward = 0;
         var curr_block_reward = 0;
 
         /*---------------------------------------------------- 
@@ -416,7 +344,7 @@
             type: jsPsychHtmlKeyboardResponse,
             stimulus: fixation,
             choices: "NO_KEYS",
-            trial_duration: 900
+            trial_duration: 1000
         }
 
         var practice_cards1 = {
@@ -454,7 +382,7 @@
                 return show_reward(current_cards_practice_trial)
             },
             choices: "NO_KEYS",
-            trial_duration: 750,
+            trial_duration: 1000,
             data: { phase: 'practice', trial_name: 'reward1', trial_num: function () { return current_cards_practice_trial } }
             , on_finish: function (data) {
                 data.reward = reward;
@@ -494,7 +422,7 @@
         var practice_reward2 = {
             type: jsPsychHtmlKeyboardResponse,
             stimulus: function () {
-                return show_reward(current_cards_practice_trial,is_catch_trial)
+                return show_reward(current_cards_practice_trial)
             },
             choices: "NO_KEYS",
             trial_duration: 750,
@@ -549,16 +477,7 @@
 
         var exp_cards = {
             type: jsPsychHtmlKeyboardResponse,
-            stimulus: function () {
-                
-                    if (exp_blocks[block][current_cards_exp_trial] == true){
-                        is_catch_trial=true;
-                        return draw_show_cards(catch_trial_images, true)
-                    }
-                    else{
-                        is_catch_trial=false;
-                    }
-                
+            stimulus: function () {               
                 return draw_show_cards(images_for_block_start())
             },
             choices: "ALL_KEYS",
@@ -586,10 +505,10 @@
         var exp_reward = {
             type: jsPsychHtmlKeyboardResponse,
             stimulus: function () {
-                return show_reward(current_cards_exp_trial,is_catch_trial)
+                return show_reward(current_cards_exp_trial)
             },
             choices: "NO_KEYS",
-            trial_duration: 750,
+            trial_duration: 1000,
             data: {
                 phase: 'exp', trial_name: 'reward2', trial_num: function () { return current_cards_exp_trial }, block: function () { return block },
                 prob1 : function(){return FB_matrix[0][current_cards_exp_trial]} ,
@@ -598,7 +517,6 @@
                 prob4 : function(){return FB_matrix[3][current_cards_exp_trial]}},
                 
                 on_finish: function(data){
-                data.is_catch_trial = is_catch_trial
                 data.left_card = images_for_block_start().indexOf(left_card);
                 data.right_card = images_for_block_start().indexOf(right_card);
                 data.key_selected = selected;
@@ -618,7 +536,7 @@
             type: jsPsychHtmlKeyboardResponse,
             stimulus: function () {
                 finish_block_string = '<p><u>Good job!</u></p>' + '<p style="text-align: left"><br> <b>Test block ' + (block + 1) + ' out of ' + (blocks) + ' is over.</b>'
-                finish_block_string += '<br> On the this part of the game <b>you earned ' + curr_block_reward + ' golden coins from cards choices and ' + curr_block_catch_trials_reward + ' golden coins from the magical shapes rounds.</b>'
+                finish_block_string += '<br> On the this part of the game <b>you earned ' + curr_block_reward +'</b>.'
                 
                 if (block != 3) {
                     finish_block_string += '<br><br> You can stretch a little and take a short break while sitting in front of the screen, if needed.</p><p> <br><br><br><b>Press SPACE to continue</b>  </p>'
@@ -633,7 +551,6 @@
             on_finish: function () {
                 block += 1;
                 current_cards_exp_trial = 0;
-                curr_block_catch_trials_reward = 0;
                 curr_block_reward = 0;
             }
         }
